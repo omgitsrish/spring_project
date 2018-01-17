@@ -1,0 +1,21 @@
+GIT
+Creating a repository
+Step 1 : Make git account
+Step 2 : Goto to "	New repository"
+Step 3 : Enter the name of the repo and if it is a new one, check the "Initialize this repository with a README" option.
+
+Git pull and push commands
+git clone url : Clones the project into a folder
+git status : Checks the files that are not staged
+git add index.html/-A/. : Stage the files
+git commit -m "Added index.html" : Will commit the files but not push it into the repo.
+git push : push files into repo
+git pull : pull files from repo
+git : shows all git commands
+git branch name : create a branch
+git branch : shows all branches
+git checkout branch : select and work on that branch
+git merge master : To add changes to your branch from master
+
+If you git commit without a message, it gives you an error. To get out of that press Esc and then type :wq
+Git pull request is used to make a request to someone that pull my file and check if it is ok. If it is ok, then merge it into master
