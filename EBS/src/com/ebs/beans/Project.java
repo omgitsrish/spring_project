@@ -99,18 +99,8 @@ public class Project {
 	}
 
 
-<<<<<<< HEAD
 	public void addProject(Project p) {
-		account.addProject(p);
-	}
-	
-=======
-
-	public void addProject(Project p) {
-		account.addProject(p);
-
-		
+		account.addProject(p);		
 	}
 
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
 }

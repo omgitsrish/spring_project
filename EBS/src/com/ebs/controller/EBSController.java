@@ -51,14 +51,10 @@ public class EBSController {
 	@RequestMapping(value="/Add-employee" , method= RequestMethod.POST )
 	public String AddEmployee(Model model, Employee e	) {
 		e.setEnabled("true");
-<<<<<<< HEAD
 		e.setEmp_id((int)(Math.random()*100));
-=======
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
 		employee.addEmployee(e);
 		return "employee";
 	}
-<<<<<<< HEAD
 	
 	@RequestMapping(value="/addtoproject" )
 	public String AddToProject(Model model	) {
@@ -75,12 +71,4 @@ public class EBSController {
 		return "project";
 	}
 	
-=======
-	@RequestMapping(value="/Add-project" , method= RequestMethod.POST )
-	public String AddProject(Model model, Project p	) {
-		project.addProject(p);
-		return "project";
-	}
-	
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
-	}
+}
