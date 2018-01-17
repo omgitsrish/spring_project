@@ -40,11 +40,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#add" data-toggle="tab">Add Project</a>
                             </li>
-<<<<<<< HEAD
-                            <li class=""><a href="#status" data-toggle="tab">Project Status</a>
-=======
                             <li class=""><a href="#Status" data-toggle="tab">Project Status</a>
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
                             </li>
                             <li class=""><a href="#broadcast" data-toggle="tab">Broadcast</a>
                             </li>
@@ -77,17 +73,10 @@
 									Project Status:<sv:input path="status"/><br><br>
 									<input type="submit" value="Register Project" />
 								</sv:form>
-<<<<<<< HEAD
                                 
-                                
-                                
-                            </div>
-                            <div class="tab-pane fade" id="status">
-=======
                             </div>
                             
                             <div class="tab-pane fade" id="Status">
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
                                 <h4>View detail project status</h4>
                                 <p>
                                 show all projects list with detail reports<BR>
@@ -95,10 +84,7 @@
                                 </p>
 
                             </div>
-<<<<<<< HEAD
-=======
-                            
->>>>>>> 53bae2a8c8fd8066ee3891ed56ecf145b47ca787
+
                             <div class="tab-pane fade" id="broadcast">
                                 <h4>Broadcast message to entire project team</h4>
                                 <p>
@@ -130,7 +116,6 @@
               </div>
              
               
-    </div>
     </div>
   
    
