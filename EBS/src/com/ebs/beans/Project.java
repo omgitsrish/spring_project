@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ebs.model.Account;
+import com.ebs.model.AccountAli;
 
 @Component
 public class Project {
@@ -18,6 +19,15 @@ public class Project {
 	private String budget;
 	private String status;
 	private Account account;
+	private AccountAli accountali;
+	
+	
+@Autowired
+	public void setAccountali(AccountAli accountali) {
+		this.accountali = accountali;
+	}
+
+
 
 	@Autowired
 	public void setAccount(Account account) {
@@ -100,7 +110,7 @@ public class Project {
 
 
 	public void addProject(Project p) {
-		account.addProject(p);		
+		accountali.addProject(p);		
 	}
 
 }
