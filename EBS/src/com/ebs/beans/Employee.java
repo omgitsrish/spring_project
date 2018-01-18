@@ -1,5 +1,7 @@
 package com.ebs.beans;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -99,6 +101,14 @@ public class Employee {
 
 	public void addEmployee(Employee e) {
 		account.addEmployee(e);
+	}
+	
+	public List<Employee> getAllEmployee(){
+		return account.getAllEmployee();
+	}
+	
+	public void addEmployeeToProject(int emp_id,int proj_id) {
+		System.out.println("Added to project");
 	}
 
 }

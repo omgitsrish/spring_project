@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sv" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,10 +13,13 @@
 
 <c:if test="${status == null }">
 <h4>Add employee to a project</h4>
-<form action="${pageContext.request.contextPath }/addtoproject?emp_name=<c:out value="${emp_name }" />" method="GET" >
-Enter employee name : <input type="text" name="emp_name" /> <br>
-<input type="submit" value="Go" />
-</form>
+<sv:form action="${pageContext.request.contextPath }/addNewEmpToProject" method="GET" modelAttribute="employee" >
+Select employee : <sv:select path = "emp_name">
+                     <sv:option value = "NONE" label = "Select"/>
+                     <sv:options items = "${listOfEmp}" itemValue="emp_id" itemLabel="emp_name" />
+                  </sv:select>   
+                  <input type="submit" value="Add to project"/>
+</sv:form>
 </c:if>
 
 <c:if test='${status == "fromEmp" }'>
@@ -25,9 +29,17 @@ Enter employee name : <input type="text" name="emp_name" /> <br>
 </c:if>
 <c:if test='${status == "true" }'>
 <h3> Select a project </h3>
-	<c:forEach var="p" items="${list }">
-		<a href="#"><c:out value="${p.getProj_name() }" /> </a>
-	</c:forEach>
+
+<sv:form action="${pageContext.request.contextPath }/addEmployeeToDb" method="GET" modelAttribute="project">
+				 <sv:select path = "proj_name">
+                     <sv:option value = "NONE" label = "Select"/>
+                     <sv:options items = "${listOfProjects}" itemValue="proj_id" itemLabel="proj_name"/>
+                  </sv:select>
+                  <input type="submit" value="Add to project" />   
+</sv:form>
+	
+	
+	
 </c:if>
 
 

@@ -114,7 +114,7 @@
   <br>
 Enter increment for Employee <c:out value="${id }"></c:out>:
 
-<form method="get" action='${pageContext.request.contextPath }/input_increment?id=<c:out value="${id }"/>'>
+<form method="get" action='${pageContext.request.contextPath }/input_increment?new_id=<c:out value="${id }"/>'>
 <input type="number" name="increment"/>
 <input type="submit" value="Submit"/>
 

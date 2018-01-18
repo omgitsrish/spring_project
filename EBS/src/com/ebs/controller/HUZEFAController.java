@@ -37,7 +37,7 @@ public class HUZEFAController {
 	}
 	
 	@RequestMapping(value="/input_increment")
-	public String inputIncrement(@RequestParam("id") String id, HttpServletRequest request,Model model) {
+	public String inputIncrement(@RequestParam ("new_id") String id, HttpServletRequest request,Model model) {
 		int increment=Integer.parseInt(request.getParameter("increment"));
 	
 		System.out.println("id="+id+"increment="+increment);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ebs.beans.Employee;
 import com.ebs.beans.Project;
@@ -13,6 +14,7 @@ import com.ebs.beans.Project;
 public class EBSController {
 	private Employee employee;
 	private Project project;
+	private int emp_id;
 	
 	@Autowired
 	public void setProject(Project project) {
@@ -49,7 +51,9 @@ public class EBSController {
 	}
 	
 	@RequestMapping("addtoproject")
-	public String addtoproject(){
+	public String addtoproject(Model model){
+		model.addAttribute("employee", new Employee());
+		model.addAttribute("listOfEmp", employee.getAllEmployee());
 		return "addtoproject";
 	}
 	
@@ -61,13 +65,16 @@ public class EBSController {
 		model.addAttribute("emp_id", e.getEmp_id());
 		model.addAttribute("status", "fromEmp");
 		employee.addEmployee(e);
+		this.emp_id=e.getEmp_id();
 		return "addtoproject";
 	}
 	
 	@RequestMapping(value="/addNewEmpToProject" )
-	public String AddToProject(Model model	) {
+	public String AddToProject(Model model) {
 		model.addAttribute("status","true");
-		model.addAttribute("list" , project.getAllProjects());
+		System.out.println(this.emp_id);
+		model.addAttribute("project", new Project());
+		model.addAttribute("listOfProjects" , project.getAllProjects());
 		return "addtoproject";
 	}
 	
@@ -78,5 +85,13 @@ public class EBSController {
 		project.addProject(p);
 		return "project";
 	}
+	
+	@RequestMapping("/addEmployeeToDb")
+	public String AddEmployeeToDB(Model model, Project p) {
+		employee.addEmployeeToProject(this.emp_id, p.getProj_id());
+		return "employee";
+	}
+	
+	
 	
 }
