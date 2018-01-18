@@ -111,21 +111,13 @@
                                 <p>
                                 <a href="${pageContext.request.contextPath }/Increment_Salary">Select employee from drop down and give increment</a> <BR>
                                 <div class="dropdown">
-  <button class="dropbtn">Select Employee</button>
-  <div class="dropdown-content">
-    
-    <c:forEach var="s" items="${list }">
-    <a href="${pageContext.request.contextPath }/empid_selected?id=${s.emp_id}"> <c:out value="${s.emp_id }"/>  </a>
-    
-    </c:forEach>
-  </div>
-</div>
-<br>
-Enter increment for Employee <%= request.getAttribute("id")%>:
+  <br>
+Enter increment for Employee <c:out value="${id }"></c:out>:
 
-<form method="get" action="${pageContext.request.contextPath }/input_increment?id=<%=request.getAttribute("id")%>">
+<form method="get" action='${pageContext.request.contextPath }/input_increment?id=<c:out value="${id }"/>'>
 <input type="number" name="increment"/>
 <input type="submit" value="Submit"/>
+
 </form>
 <br><br><br><br><br><br><br><br>                                
                                 

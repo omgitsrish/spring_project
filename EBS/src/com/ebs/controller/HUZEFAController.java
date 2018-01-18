@@ -30,19 +30,20 @@ public class HUZEFAController {
 	}
 	
 	@RequestMapping(value="/empid_selected")
-	public String empidSelected(@RequestParam("id") String id, Model model) {
+	public String empidSelected(@RequestParam("id") String id, Model model,HttpServletRequest request) {
 		model.addAttribute("id",id);
+		System.out.println("Works till /empidselected");
 		return "howmuchincrement";
 	}
 	
 	@RequestMapping(value="/input_increment")
-	public String inputincrement(@RequestParam("id") String id, HttpServletRequest request,Model model) {
+	public String inputIncrement(@RequestParam("id") String id, HttpServletRequest request,Model model) {
 		int increment=Integer.parseInt(request.getParameter("increment"));
 	
 		System.out.println("id="+id+"increment="+increment);
 		sal.giveIncrement(Integer.parseInt(id),increment,new Salary());
 		
-		model.addAttribute("id", id);
+		
 		return "successfulincrement";
 	}
 	
