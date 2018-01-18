@@ -48,15 +48,23 @@ public class EBSController {
 		return "search";
 	}
 	
+	@RequestMapping("addtoproject")
+	public String addtoproject(){
+		return "addtoproject";
+	}
+	
 	@RequestMapping(value="/Add-employee" , method= RequestMethod.POST )
 	public String AddEmployee(Model model, Employee e	) {
 		e.setEnabled("true");
-		e.setEmp_id((int)(Math.random()*100));
+		e.setEmp_id((int)(Math.random()*10000));
+		model.addAttribute("emp_name", e.getEmp_name());
+		model.addAttribute("emp_id", e.getEmp_id());
+		model.addAttribute("status", "fromEmp");
 		employee.addEmployee(e);
-		return "employee";
+		return "addtoproject";
 	}
 	
-	@RequestMapping(value="/addtoproject" )
+	@RequestMapping(value="/addNewEmpToProject" )
 	public String AddToProject(Model model	) {
 		model.addAttribute("status","true");
 		model.addAttribute("list" , project.getAllProjects());

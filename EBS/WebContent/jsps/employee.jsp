@@ -44,7 +44,8 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="add">
-                                <h4>Add Employee in the System</h4>
+                            	<a href="${pageContext.request.contextPath }/addtoproject"><h4>Add employee to project<h4></a>
+                                <h3>Add Employee in the System</h3>
                                 <p>
                                 Display the form here to add employee in the system<br>
                                 Set Employee Username/Password(oai202lbb) <BR>
@@ -56,7 +57,7 @@
 								<h4>Personal details</h4>
 								<hr>
 								<sv:form action="${ pageContext.request.contextPath }/Add-employee" method="POST" modelAttribute="employee" >
-									Name: <sv:input path="emp_name"/> <br><br>
+									Name: <sv:input path="emp_name"/> <br><br>	
 									Address: <sv:input path="emp_address"/> <br><br>
 								<h4>Company details</h4>
 									<hr>
@@ -109,7 +110,6 @@
               </div>
              
               
-    </div>
     </div>
   
    
