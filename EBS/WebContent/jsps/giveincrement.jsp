@@ -2,6 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
+<script>
+
+
+
+</script>
+
+
+
 <style>
 .dropbtn {
     background-color: white;
@@ -107,7 +115,7 @@
   <div class="dropdown-content">
     
     <c:forEach var="s" items="${list }">
-    <a href="#"> <c:out value="${s.emp_id }"/>  </a>
+    <a href="${pageContext.request.contextPath }/empid_selected?id=${s.emp_id}"> <c:out value="${s.emp_id }"/>  </a>
     
     
     </c:forEach>
