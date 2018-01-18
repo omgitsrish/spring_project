@@ -67,7 +67,8 @@ public class Salary {
 		}
 
 
-	public void giveIncrement(int id, int increment, Salary s) {
+	public void giveIncrement(int id, String increment, Salary s) {
+		System.out.println("Comes in salary id"+id+"increment"+increment);
 		account.giveIncrement(id,increment,s);
 	
 	}

@@ -37,12 +37,12 @@ public class HUZEFAController {
 	}
 	
 	@RequestMapping(value="/input_increment")
-	public String inputIncrement(@RequestParam ("new_id") String id, HttpServletRequest request,Model model) {
-		int increment=Integer.parseInt(request.getParameter("increment"));
-	
+	public String inputIncrement( HttpServletRequest request,Model model) {
+		String increment=request.getParameter("increment");
+		int id=Integer.parseInt(request.getParameter("id"));
 		System.out.println("id="+id+"increment="+increment);
-		sal.giveIncrement(Integer.parseInt(id),increment,new Salary());
-		
+		sal.giveIncrement(id,increment,new Salary());
+		model.addAttribute("id", id);
 		
 		return "successfulincrement";
 	}

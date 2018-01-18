@@ -101,11 +101,19 @@ public class Account {
 
 		}
 
-		public void giveIncrement(int id, int increment, Salary s) {
+		public void giveIncrement(int id, String increment, Salary s) {
 			MapSqlParameterSource map= new MapSqlParameterSource();
 			//map.addValue("record_id", s.getRecord_id());
 			map.addValue("emp_id", id);
-			map.addValue("salary", (float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*increment/100);
+			List<Salary> list=getEmployeeCurrentSalary();
+			for(Salary s1:list) {
+				if(id==s1.getEmp_id())
+					s=s1;
+			}
+		
+			
+			
+			map.addValue("salary",(int)((float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*(Integer.parseInt(increment))/100));
 			//map.addValue(paramName, value)
 			jdbc.update("update salary_record set salary=:salary where emp_id=:emp_id", map);
 			
