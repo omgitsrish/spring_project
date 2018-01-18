@@ -19,6 +19,15 @@ public class HUZEFAController {
 		return "salaryofemployees";
 	}
 	
+	@RequestMapping(value="/Increment_Salary")
+	public String salaryIncrement(Model model) {
+		
+	
+		
+		return "giveincrement";
+	}
+	
+	
 	
 
 	@Autowired

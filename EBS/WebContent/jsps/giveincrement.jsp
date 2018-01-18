@@ -1,6 +1,60 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+<style>
+.dropbtn {
+	background-color:white;
+	color: black;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: <div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: white
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+</style>
+
+</head>
+
 
 <body>
      
@@ -36,9 +90,9 @@
                     <div class="col-lg-12 ">
                        <h5>Salary Record Management</h5>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#record" data-toggle="tab">Current Salary</a>
+                            <li class=""><a href="#record" data-toggle="tab">Current Salary</a>
                             </li>
-                            <li class=""><a href="#increment" data-toggle="tab">Increments</a>
+                            <li class="active"><a href="#increment" data-toggle="tab">Increments</a>
                             </li>
                             <li class=""><a href="#estimate" data-toggle="tab">Project Estimates</a>
                             </li>
@@ -46,7 +100,7 @@
 
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade active in" id="record">
+                            <div class="tab-pane fade" id="record">
                                 <h4>Current Salary Record</h4>
                                 <p>
                                 <a href="${pageContext.request.contextPath }/Give_Salary">Give details of all employees current salary</a> <BR>
@@ -54,10 +108,22 @@
                                     
 								</p>
                             </div>
-                            <div class="tab-pane fade" id="increment">
+                            <div class="tab-pane fade active in" id="increment">
                                 <h4>Increments Management</h4>
                                 <p>
-                                <a href="${pageContext.request.contextPath }/Increment_Salary">Select employee from drop down and give increment</a> <BR>
+                                Select employee from drop down and give increment <BR>
+                                <div class="tab-pane fade" id="increment">
+								<div class="dropdown">
+									<button class="dropbtn">Dropdown</button>
+ 										 <div class="dropdown-content">
+    										<a href="#">Link 1</a>
+										    <a href="#">Link 2</a>
+    										<a href="#">Link 3</a>
+  										</div>
+							</div>                                
+                                
+                                
+                                
                                 Select manager from drop down for increments <BR>
                                 give option for static increments     
 								</p>
