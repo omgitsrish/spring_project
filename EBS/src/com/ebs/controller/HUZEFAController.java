@@ -21,11 +21,13 @@ public class HUZEFAController {
 	
 	@RequestMapping(value="/Increment_Salary")
 	public String salaryIncrement(Model model) {
-		
-	
-		
+		model.addAttribute("list", sal.getEmployeeId());
 		return "giveincrement";
 	}
+	
+	
+	
+	
 	
 	
 	
