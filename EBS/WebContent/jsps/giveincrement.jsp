@@ -106,7 +106,11 @@
   <button class="dropbtn">Select Employee</button>
   <div class="dropdown-content">
     
+    <c:forEach var="s" items="${list }">
+    <a href="#"> <c:out value="${s.emp_id }"/>  </a>
     
+    
+    </c:forEach>
   </div>
 </div>
 <br><br><br><br><br><br><br><br>                                
