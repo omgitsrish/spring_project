@@ -116,12 +116,17 @@
     
     <c:forEach var="s" items="${list }">
     <a href="${pageContext.request.contextPath }/empid_selected?id=${s.emp_id}"> <c:out value="${s.emp_id }"/>  </a>
-
-
     
     </c:forEach>
   </div>
 </div>
+<br>
+Enter increment for Employee <%= request.getAttribute("id")%>:
+
+<form method="get" action="${pageContext.request.contextPath }/input_increment?id=${s.emp_id}">
+<input type="number" name="increment"/>
+<input type="submit" value="Submit"/>
+</form>
 <br><br><br><br><br><br><br><br>                                
                                 
                                 
@@ -136,7 +141,7 @@
                                     give option for batch increments to entire project team including manager<BR>
                                     
                                 </p>
-s
+
                             </div>
                             
 	
