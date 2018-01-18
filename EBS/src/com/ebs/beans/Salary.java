@@ -14,6 +14,8 @@ public class Salary {
 	private String salary;
 	private int emp_id;
 	private Account account;
+	private Employee e;
+	
 	public String getSalary() {
 		return salary;
 	}
@@ -36,7 +38,6 @@ public class Salary {
 		return e;
 	}
 
-	private Employee e;
 	public int getRecord_id() {
 		return record_id;
 	}
@@ -61,8 +62,8 @@ public class Salary {
 		return account.getEmployeeCurrentSalary();
 	}
 	
-	public List<Salary> getEmployeeId(){
-		return account.getEmployeeId();
+	public List<Employee> getEmployeeId(){
+		return account.getAllEmployee();
 	}
 	
 }

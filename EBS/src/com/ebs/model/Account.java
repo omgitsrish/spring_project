@@ -78,18 +78,24 @@ public class Account {
 		map.addValue("emp_id", e.getEmp_id());
 		jdbc.update("insert into users(username,password,enabled) values(:username,:password,:enabled)", map);
 		jdbc.update("insert into employee(emp_id,emp_name,emp_address,emp_joindate,emp_leavedate,emp_salary,username) values(:emp_id,:emp_name,:emp_address,:emp_joindate,:emp_leavedate,:emp_salary,:username)", map);
+		jdbc.update("insert into salary_record(emp_id,salary,date) values(:emp_id,:emp_salary,:emp_joindate)", map);
 	}
 	
-		public List<Salary> getEmployeeId() {
-			return jdbc.query("select emp_id from salary_record", new RowMapper<Salary>(){
+		public List<Employee> getAllEmployee() {
+			return jdbc.query("select * from employee", new RowMapper<Employee>(){
 
 				@Override
-				public Salary mapRow(ResultSet rs, int rowNum) throws SQLException {
-					Salary s=new Salary();
+				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Employee e = new Employee();
 					
-					s.setEmp_id(rs.getInt("emp_id"));
-					return s;
-				
+					e.setEmp_id(rs.getInt("emp_id"));
+					e.setEmp_name(rs.getString("emp_name"));
+					e.setEmp_address(rs.getString("emp_address"));
+					e.setEmp_joindate(rs.getString("emp_joindate"));
+					e.setEmp_leavedate(rs.getString("emp_leavedate"));
+					e.setEmp_salary(rs.getString("emp_salary"));
+					
+					return e;
 					}
 			});
 
