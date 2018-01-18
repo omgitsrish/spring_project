@@ -64,6 +64,12 @@ public class Salary {
 	
 	public List<Employee> getEmployeeId(){
 		return account.getAllEmployee();
+		}
+
+
+	public void giveIncrement(int id, int increment, Salary s) {
+		account.giveIncrement(id,increment,s);
+	
 	}
 	
 }

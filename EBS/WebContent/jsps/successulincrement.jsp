@@ -121,12 +121,7 @@
   </div>
 </div>
 <br>
-Enter increment for Employee <%= request.getAttribute("id")%>:
-
-<form method="get" action="${pageContext.request.contextPath }/input_increment?id=<%=request.getAttribute("id")%>">
-<input type="number" name="increment"/>
-<input type="submit" value="Submit"/>
-</form>
+<h3>Successful Increment For Employee <c:out value="${id }"/></h3>
 <br><br><br><br><br><br><br><br>                                
                                 
                                 

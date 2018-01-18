@@ -25,24 +25,25 @@ public class HUZEFAController {
 	
 	@RequestMapping(value="/Increment_Salary")
 	public String salaryIncrement(Model model) {
-		model.addAttribute("list", sal.getEmployeeId());
+		model.addAttribute("list", sal.getEmployeeSalary());
 		return "giveincrement";
 	}
 	
 	@RequestMapping(value="/empid_selected")
-	public String empidSelected(@RequestParam("id") int id, Model model) {
+	public String empidSelected(@RequestParam("id") String id, Model model) {
 		model.addAttribute("id",id);
 		return "howmuchincrement";
 	}
 	
 	@RequestMapping(value="/input_increment")
-	public String inputincrement(@RequestParam("id") int id, HttpServletRequest request,Model model) {
+	public String inputincrement(@RequestParam("id") String id, HttpServletRequest request,Model model) {
 		int increment=Integer.parseInt(request.getParameter("increment"));
+	
+		System.out.println("id="+id+"increment="+increment);
+		sal.giveIncrement(Integer.parseInt(id),increment,new Salary());
 		
-		
-		
-		
-		return "howmuchincrement";
+		model.addAttribute("id", id);
+		return "successfulincrement";
 	}
 	
 	
