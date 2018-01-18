@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.ebs.beans.Employee;
 import com.ebs.beans.Project;
+import com.ebs.beans.Salary;
 
 @Component
 public class Account {
@@ -43,6 +44,21 @@ public class Account {
 		});
 	}
 
+	public List<Salary> getEmployeeCurrentSalary(){
+		return jdbc.query("select * from salary_record", new RowMapper<Salary>(){
+
+			@Override
+			public Salary mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Salary s=new Salary();
+				s.setRecord_id(rs.getInt("record_id"));
+				s.setEmp_id(rs.getInt("emp_id"));
+				s.setSalary(rs.getString("salary"));
+				s.setDate(rs.getString("date"));
+				return s;
+			
+				}
+		});
+	}
 	
 	
 	
