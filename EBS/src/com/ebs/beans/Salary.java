@@ -61,4 +61,8 @@ public class Salary {
 		return account.getEmployeeCurrentSalary();
 	}
 	
+	public List<Salary> getEmployeeId(){
+		return account.getEmployeeId();
+	}
+	
 }

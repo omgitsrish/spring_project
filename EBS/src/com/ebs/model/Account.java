@@ -79,4 +79,20 @@ public class Account {
 		jdbc.update("insert into users(username,password,enabled) values(:username,:password,:enabled)", map);
 		jdbc.update("insert into employee(emp_id,emp_name,emp_address,emp_joindate,emp_leavedate,emp_salary,username) values(:emp_id,:emp_name,:emp_address,:emp_joindate,:emp_leavedate,:emp_salary,:username)", map);
 	}
+	
+		public List<Salary> getEmployeeId() {
+			return jdbc.query("select emp_id from salary_record", new RowMapper<Salary>(){
+
+				@Override
+				public Salary mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Salary s=new Salary();
+					
+					s.setEmp_id(rs.getInt("emp_id"));
+					return s;
+				
+					}
+			});
+
+		}
+	
 }
