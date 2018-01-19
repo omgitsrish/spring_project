@@ -107,8 +107,8 @@ public class Employee {
 		return account.getAllEmployee();
 	}
 	
-	public void addEmployeeToProject(int emp_id,int proj_id) {
-		System.out.println("Added to project");
+	public void addEmployeeToProject(int emp_id,Project p) {
+		account.addEmployeeToProject(emp_id,p);
 	}
 
 }

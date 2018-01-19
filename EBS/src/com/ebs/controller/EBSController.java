@@ -88,7 +88,7 @@ public class EBSController {
 	
 	@RequestMapping("/addEmployeeToDb")
 	public String AddEmployeeToDB(Model model, Project p) {
-		employee.addEmployeeToProject(this.emp_id, p.getProj_id());
+		employee.addEmployeeToProject(this.emp_id, p);
 		return "employee";
 	}
 	
