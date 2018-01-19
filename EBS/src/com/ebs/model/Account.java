@@ -65,6 +65,7 @@ public class Account {
 	public void addEmployee(Employee e) {
 		MapSqlParameterSource map= new MapSqlParameterSource();
 		map.addValue("emp_id", e.getEmp_id());
+		map.addValue("authority", "employee");
 		map.addValue("emp_name",e.getEmp_name());
 		map.addValue("emp_address",e.getEmp_address() );
 		map.addValue("username",e.getUsername() );
@@ -77,6 +78,7 @@ public class Account {
 		//map.addValue("authority",v.getAuthority() );
 		map.addValue("emp_id", e.getEmp_id());
 		jdbc.update("insert into users(username,password,enabled) values(:username,:password,:enabled)", map);
+		jdbc.update("insert into authorities (username,authority) values (:username,:authority)", map);
 		jdbc.update("insert into employee(emp_id,emp_name,emp_address,emp_joindate,emp_leavedate,emp_salary,username) values(:emp_id,:emp_name,:emp_address,:emp_joindate,:emp_leavedate,:emp_salary,:username)", map);
 		jdbc.update("insert into salary_record(emp_id,salary,date) values(:emp_id,:emp_salary,:emp_joindate)", map);
 	}
@@ -101,13 +103,33 @@ public class Account {
 
 		}
 
-		public void giveIncrement(int id, int increment, Salary s) {
+		public void giveIncrement(int id, String increment, Salary s) {
 			MapSqlParameterSource map= new MapSqlParameterSource();
 			//map.addValue("record_id", s.getRecord_id());
 			map.addValue("emp_id", id);
-			map.addValue("salary", (float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*increment/100);
+			List<Salary> list=getEmployeeCurrentSalary();
+			for(Salary s1:list) {
+				if(id==s1.getEmp_id())
+					s=s1;
+			}
+		
+			
+			
+			map.addValue("salary",(int)((float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*(Integer.parseInt(increment))/100));
 			//map.addValue(paramName, value)
-			jdbc.update("update salary_record set salary=:salary where emp_id=:emp_id", map);
+			map.addValue("date", s.getDate());
+			jdbc.update("insert into salary_record(emp_id,salary,date) values(:emp_id,:salary,:date) ", map);
+			
+		}
+
+		public void addEmployeeToProject(int emp_id, Project p) {
+			MapSqlParameterSource map= new MapSqlParameterSource();
+			map.addValue("emp_id", emp_id);
+			map.addValue("proj_id",p.getProj_id());
+			map.addValue("date_from", p.getProj_start_date());
+			map.addValue("date_to", p.getProj_end_date());
+			
+			jdbc.update("insert into employee_has_project(emp_id,proj_id,date_from,date_to) values(:emp_id,:proj_id,:date_from,:date_to)", map);
 			
 		}
 	

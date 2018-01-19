@@ -115,7 +115,7 @@
   <div class="dropdown-content">
     
     <c:forEach var="s" items="${list }">
-    <a href="${pageContext.request.contextPath }/empid_selected?id=${s.emp_id}"> <c:out value="${s.emp_id }"/>  </a>
+    <a href='${pageContext.request.contextPath }/empid_selected?id=<c:out value="${s.emp_id }"/>'> <c:out value="${s.emp_id }"/>  </a>
 
 
     

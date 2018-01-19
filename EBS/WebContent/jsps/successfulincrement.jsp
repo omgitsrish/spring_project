@@ -109,21 +109,9 @@
                             <div class="tab-pane fade active in" id="increment" >
                                 <h4>Increments Management</h4>
                                 <p>
+                                <h3>Successful Increment for Employee <c:out value="${id }"></c:out> </h3>
                                 <a href="${pageContext.request.contextPath }/Increment_Salary">Select employee from drop down and give increment</a> <BR>
-                                <div class="dropdown">
-  <button class="dropbtn">Select Employee</button>
-  <div class="dropdown-content">
-    
-    <c:forEach var="s" items="${list }">
-    <a href="${pageContext.request.contextPath }/empid_selected?id=${s.emp_id}"> <c:out value="${s.emp_id }"/>  </a>
-    
-    </c:forEach>
-  </div>
-</div>
-<br>
-<h3>Successful Increment For Employee <c:out value="${id }"/></h3>
-<br><br><br><br><br><br><br><br>                                
-                                
+                                      
                                 
                                 Select manager from drop down for increments <BR>
                                 give option for static increments     
@@ -136,7 +124,7 @@
                                     give option for batch increments to entire project team including manager<BR>
                                     
                                 </p>
-
+s
                             </div>
                             
 	

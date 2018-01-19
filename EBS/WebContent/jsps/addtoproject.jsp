@@ -35,6 +35,8 @@ Select employee : <sv:select path = "emp_name">
                      <sv:option value = "NONE" label = "Select"/>
                      <sv:options items = "${listOfProjects}" itemValue="proj_id" itemLabel="proj_name"/>
                   </sv:select>
+                  <sv:input type="date" path="proj_start_date"  placeholder="From date" />
+                  <sv:input type="date" path="proj_end_date" placeholder="To date" />
                   <input type="submit" value="Add to project" />   
 </sv:form>
 	

@@ -76,7 +76,7 @@
 							<div class="tab-pane fade" id="increment">
 								<h4>Increments Management</h4>
 								<p>
-									Select employee from drop down and give increment <BR> 
+									<a href="${pageContext.request.contextPath }/Increment_Salary">Select employee from drop down and give increment</a> <BR> 
                                 
                                 
                                 
