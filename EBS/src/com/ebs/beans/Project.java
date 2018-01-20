@@ -10,6 +10,7 @@ import com.ebs.model.AccountAli;
 
 @Component
 public class Project {
+	private static int count;
 	private int proj_id;
 	private String proj_name;
 	private String proj_start_date;
@@ -22,6 +23,10 @@ public class Project {
 	private AccountAli accountali;
 	
 	
+	public int getCount() {
+		count+=1;
+		return count;
+	}
 @Autowired
 	public void setAccountali(AccountAli accountali) {
 		this.accountali = accountali;

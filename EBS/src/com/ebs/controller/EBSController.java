@@ -50,7 +50,7 @@ public class EBSController {
 		return "search";
 	}
 	
-	@RequestMapping("addtoproject")
+	@RequestMapping("/addtoproject")
 	public String addtoproject(Model model){
 		model.addAttribute("employee", new Employee());
 		model.addAttribute("listOfEmp", employee.getAllEmployee());
@@ -75,6 +75,7 @@ public class EBSController {
 		model.addAttribute("status","true");
 		System.out.println(this.emp_id);
 		model.addAttribute("project", new Project());
+		
 		model.addAttribute("listOfProjects" , project.getAllProjects());
 		return "addtoproject";
 	}
