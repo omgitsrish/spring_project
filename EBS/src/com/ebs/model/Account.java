@@ -44,7 +44,7 @@ public class Account {
 		});
 	}
 
-	public List<Salary> getEmployeeCurrentSalary(){
+	public List<Salary> getEmployee1CurrentSalary(){
 		return jdbc.query("select * from salary_record", new RowMapper<Salary>(){
 
 			@Override
@@ -59,6 +59,22 @@ public class Account {
 				}
 		});
 	}
+	
+	public List<Employee> getEmployeeCurrentSalary(){
+		return jdbc.query("select * from employee", new RowMapper<Employee>(){
+
+			@Override
+			public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Employee e=new Employee();
+				e.setEmp_id(rs.getInt("emp_id"));
+				e.setEmp_name(rs.getString("emp_name"));
+				e.setEmp_salary(rs.getString("emp_salary"));
+				return e;
+				}
+		});
+	}
+
+	
 	
 	
 	
@@ -107,18 +123,21 @@ public class Account {
 			MapSqlParameterSource map= new MapSqlParameterSource();
 			//map.addValue("record_id", s.getRecord_id());
 			map.addValue("emp_id", id);
-			List<Salary> list=getEmployeeCurrentSalary();
+			List<Salary> list=getEmployee1CurrentSalary();
 			for(Salary s1:list) {
 				if(id==s1.getEmp_id())
 					s=s1;
 			}
-		
 			
 			
+			System.out.println(s.getSalary());
 			map.addValue("salary",(int)((float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*(Integer.parseInt(increment))/100));
 			//map.addValue(paramName, value)
 			map.addValue("date", s.getDate());
 			jdbc.update("insert into salary_record(emp_id,salary,date) values(:emp_id,:salary,:date) ", map);
+			System.out.println("Updated Salary="+(int)((float)Integer.parseInt(s.getSalary())+(float)Integer.parseInt(s.getSalary())*(Integer.parseInt(increment))/100));
+			jdbc.update("update employee set emp_salary=:salary where emp_id=:emp_id", map);
+			
 			
 		}
 

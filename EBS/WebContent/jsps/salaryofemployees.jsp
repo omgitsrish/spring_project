@@ -57,11 +57,11 @@
 										details of all employees current salary</a> <BR>
 									<!-- Iterate for loop -->
 									<c:forEach var="s" items="${list }">
-								Record No:<c:out value="${s.getRecord_id() }" />
-										<br>
 								Employee Id:<c:out value="${s.getEmp_id() }"></c:out>
 										<br>
-								Salary:<c:out value="${s.getSalary() }"></c:out>
+								Employee Name:<c:out value="${s.getEmp_name() }"/>
+										<br>
+								Salary:<c:out value="${s.getEmp_salary() }"></c:out>
 										<br>
 										<Br>
 									</c:forEach>

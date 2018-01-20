@@ -56,7 +56,7 @@ public class Salary {
 		this.e = e;
 	}
 	
-	public List<Salary> getEmployeeSalary(){
+	public List<Employee> getEmployeeSalary(){
 		
 		System.out.println("Works fine Salary");
 		return account.getEmployeeCurrentSalary();
