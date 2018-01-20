@@ -9,6 +9,7 @@ import com.ebs.model.Account;
 
 @Component
 public class Employee {
+	private static int count=1;
 	private int emp_id;
 	private String emp_name;
 	private String emp_address;
@@ -20,6 +21,11 @@ public class Employee {
 	private String password;
 	private String enabled;
 	
+	
+	public int getCount() {
+		count+=1;
+		return count;
+	}
 	
 	public int getEmp_id() {
 		return emp_id;

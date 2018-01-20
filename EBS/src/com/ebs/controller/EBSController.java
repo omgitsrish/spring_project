@@ -60,7 +60,8 @@ public class EBSController {
 	@RequestMapping(value="/Add-employee" , method= RequestMethod.POST )
 	public String AddEmployee(Model model, Employee e	) {
 		e.setEnabled("true");
-		e.setEmp_id((int)(Math.random()*10000));
+		e.setEmp_id(e.getCount());
+		System.out.println("count="+e.getEmp_id());
 		model.addAttribute("emp_name", e.getEmp_name());
 		model.addAttribute("emp_id", e.getEmp_id());
 		model.addAttribute("status", "fromEmp");
