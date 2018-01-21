@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.ebs.beans.Employee;
+import com.ebs.beans.Employee_has_Project;
 import com.ebs.beans.Project;
 
 @Component
@@ -22,7 +23,14 @@ public class Account {
 	private PasswordEncoder passenc;
 	private Employee employee;
 	private Project project ;
+	private Employee_has_Project ehp;
 	
+	@Autowired
+	public void setEhp(Employee_has_Project ehp) {
+		this.ehp = ehp;
+	}
+
+
 	@Autowired
 	public void setProject(Project project) {
 		this.project = project;
@@ -89,7 +97,7 @@ public class Account {
 				});
 	}
 
-
+	
 	public void addEmployee(Employee e) {
 		// Insert e into DB
 		MapSqlParameterSource map = new MapSqlParameterSource();
@@ -110,6 +118,26 @@ public class Account {
 		jdbc.update("insert into users(username,password,enabled) values (:emp_email,:password,:enabled)", map);
 		jdbc.update("insert into authorities(username,authority) values (:emp_email,:authority)", map);
 	}
+	
+	
+	
+	public List<Employee_has_Project> getAllEmphasProj() {
+		// Extract all projects from DB
+				return jdbc.query("select * from employee_has_project", new RowMapper<Employee_has_Project>(){
+
+					@Override
+					public Employee_has_Project mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Employee_has_Project p =new Employee_has_Project();
+						p.setEmp_id(rs.getInt("emp_id"));
+						p.setProj_id(rs.getInt("proj_id"));
+						p.setDate_from(rs.getString("date_from"));
+						p.setDate_to(rs.getString("date_to"));
+						return p;
+					}
+					
+				});
+	}
+
 	
 	/*
 	public List<Product> getAllProducts(){
