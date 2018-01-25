@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="alert alert-info">
-                             <strong>Welcome User ! </strong> You Have No pending New Messages.
+                             <strong>Welcome <c:out value="${pageContext.request.userPrincipal.name }"></c:out> ! </strong> You Have No pending New Messages.
                         </div>
                        
                     </div>

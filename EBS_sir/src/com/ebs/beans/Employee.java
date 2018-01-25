@@ -141,4 +141,24 @@ public class Employee implements Comparable<Employee>{
 	}
 
 	
+	public void assignEmployee(String eid, String pid) {
+		// insert in DB
+		account.assignEmployee(eid,pid);
+		
+		
+	}
+
+	public void incrementSalary(String eid, String sal) {
+		// update employee table
+		account.incrementSalary(eid,sal);
+		
+	}
+
+	public ArrayList<EmpIncr> getSalaryRecord(String eid) {
+		// go to DB and fetch 
+		ArrayList<EmpIncr> list = (ArrayList<EmpIncr>) account.getSalaryRecord(eid);
+		return list;
+	}
+
+	
 }

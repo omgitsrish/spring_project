@@ -46,7 +46,9 @@ public class EBSController {
 	}
 	
 	@RequestMapping("/dashboard")
-	public String showDashboard(){
+	public String showDashboard(HttpServletRequest request){
+		//go to DB via Employee bean and get all employees 
+		
 		return "index";
 	}
 	
@@ -69,12 +71,15 @@ public class EBSController {
 	}
 	
 	@RequestMapping("/project")
-	public String showProj(){
+	public String showProj(Model model){
+		model.addAttribute("proj", new Project());
+		
 		return "project";
 	}
 	
 	@RequestMapping("/salary")
 	public String showSalary(){
+		
 		return "salary_record";
 	}
 	

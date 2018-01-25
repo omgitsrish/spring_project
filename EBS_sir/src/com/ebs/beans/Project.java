@@ -17,7 +17,8 @@ public class Project {
 	private String client_name;
 	private String budget;
 	private String status;
-
+	private String manager_id;
+	
 	private Account account;
 	
 	
@@ -86,6 +87,14 @@ public class Project {
 	}
 
 	
+	public String getManager_id() {
+		return manager_id;
+	}
+
+	public void setManager_id(String manager_id) {
+		this.manager_id = manager_id;
+	}
+
 	public Account getAccount() {
 		return account;
 	}
@@ -99,6 +108,24 @@ public class Project {
 		// go to DB and extract all projects 
 		ArrayList<Project> list =(ArrayList<Project>)account.getAllProjects();
 		return list;
+	}
+
+	public void addProject(Project p) {
+		// Go to DB and insert Project 
+		account.addProjet(p);
+		
+	}
+
+	public void assignManager(String pid, String eid) {
+		//Go to DB and insert record
+		account.assignManager(pid,eid);
+		
+	}
+
+	public void changeManager(String pid, String eid) {
+		//Go to DB and insert record
+				account.changeManager(pid,eid);
+		
 	}
 
 }

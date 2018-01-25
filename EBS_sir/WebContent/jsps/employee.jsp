@@ -47,6 +47,11 @@
 						<c:out value="${param.msg }"/>
 						</div>
 						</c:if>
+							<c:if test="${msg != null }">
+						<div class="alert alert-warning">
+						<c:out value="${msg }"/>
+						</div>
+						</c:if>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="add">
                                 <h4>Add Employee in the System</h4>
@@ -55,11 +60,11 @@
                                 Name: <sv:input type="text" path="name" class="form-control" />
                                 Email: <sv:input type="text" path="email" class="form-control" />
                                 Address: <sv:textarea path="address" class="form-control" /> 
-                                Join Date: <sv:input type="text" path="join_date" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>" /> <BR>
-                                Leave Date: <sv:input type="text" path="leave_date" class="form-control" disabled="true"  /><BR>
-                                Salary - CTC:  <sv:input type="text" path="salary" class="form-control" placeholder="per annum salary" /><BR>
-                                Job Title:  <sv:input type="text" path="job_title" class="form-control" placeholder="enter job title" /><BR>
-                                <hr>
+                                Join Date: <sv:input type="text" path="join_date" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>" /> 
+                                Leave Date: <sv:input type="text" path="leave_date" class="form-control" disabled="true"  />
+                                Salary - CTC:  <sv:input type="text" path="salary" class="form-control" placeholder="per annum salary" />
+                                Job Title:  <sv:input type="text" path="job_title" class="form-control" placeholder="enter job title" />
+                              
                                 Username:<sv:input type="text" path="username" class="form-control" placeholder="employee email will be the username" disabled="true" />
 
                                 <BR><input type="submit" value="Add Employee" class="btn btn-primary">
@@ -92,13 +97,13 @@
                                 <h4>Assign Employee to Project</h4>
                                 <form method="post" action="${pageContext.request.contextPath }/AssignEmployeeToProject">
                                 <p>
-                               <select name="employee" class="form-control">
+                               <select name="eid" class="form-control">
                                <c:forEach var="e" items="${emp_list }">
                                <option value='<c:out value="${e.getId() }"/>'><c:out value="${e.getName() }"/> -- <c:out value="${e.getJob_title() }"/></option>
                                </c:forEach>
                                
                                </select><BR>
-                               <select name="project" class="form-control">
+                               <select name="pid" class="form-control">
                                <c:forEach var="p" items="${proj_list }">
                                <option value='<c:out value="${p.getId() }"/>'><c:out value="${p.getName() }"/> -- <c:out value="${p.getClient_name() }"/></option>
                                </c:forEach>

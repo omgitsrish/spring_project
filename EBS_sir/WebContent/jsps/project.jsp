@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sv" uri="http://www.springframework.org/tags/form" %>
 <%@page import="java.text.DateFormat"  import="java.util.Date" %>
 
 <body>
@@ -14,12 +14,11 @@
        <c:import url="sidebar.jsp"/>
         
         
-        
         <div id="page-wrapper" >
             <div id="page-inner">
                 <div class="row">
                     <div class="col-lg-12">
-                     <h2>HR System - User Dashboard</h2>   
+                     <h2>EBS System - User Dashboard</h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -37,51 +36,81 @@
                    <div class="row">
                     <div class="col-lg-12 ">
                        <h5>Project Management</h5>
+                       <c:if test="${msg != null }" >
+                        <div class="alert alert-warning">
+                             <c:out value="${msg }"></c:out>
+                        </div>
+                        </c:if>
+                        <c:if test="${param.msg != null }" >
+                        <div class="alert alert-warning">
+                             <c:out value="${param.msg }"></c:out>
+                        </div>
+                        </c:if>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#add" data-toggle="tab">Add Project</a>
                             </li>
-                            <li class=""><a href="#status" data-toggle="tab">Project Status</a>
+                            <li class=""><a href="#status1" data-toggle="tab">Project Status</a>
                             </li>
                             <li class=""><a href="#broadcast" data-toggle="tab">Broadcast</a>
                             </li>
                             <li class=""><a href="#closure" data-toggle="tab">Project Closure</a>
                             </li>
-
+							<li class=""><a href="#change" data-toggle="tab">Change Manager</a>
+                            </li>
                         </ul>
+                        
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="add">
                                 <h4>Add project in the system</h4>
                                 <p>
-                              <form>
-                              Project Name: <input type="text" name="pname" class="form-control" >
-                              Project Start Date :<input type="text" name="name" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>"> 
-                              Estimated End Date: <input type="text" name="name" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>"> 
-                              End Date: <input type="text" name="end_date" class="form-control" disabled>
-                              Client Name: <input type="text" name="cname" class="form-control" >
-                              Total Project Budget: <input type="text" name="budget" class="form-control" placeholder="Enter total budget of the project">
-                              Status: <input type="text" name="status" class="form-control" value="active"><BR>
+                              <sv:form method="post" action="${pageContext.request.contextPath }/AddProject" modelAttribute="proj">
+                              Project Name: <sv:input type="text" path="name" class="form-control" />
+                              Project Start Date :<sv:input type="text" path="start_date" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>" /> 
+                              Estimated End Date: <sv:input type="text" path="estimated_end_date" class="form-control" value="<%=DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) %>" /> 
+                              End Date: <sv:input type="text" path="end_date" class="form-control" disabled="true" />
+                              Client Name: <sv:input type="text" path="client_name" class="form-control" />
+                              Total Project Budget: <sv:input type="text" path="budget" class="form-control" placeholder="Enter total budget of the project" />
+                              Status: <sv:input type="text" path="status" class="form-control" value="open" /><BR>
+                              Select Manager:
+                 				<sv:select path="manager_id" class="form-control">
+                               <c:forEach var="e" items="${emp_list }">
+                               <option value='<c:out value="${e.getId() }"/>'><c:out value="${e.getName() }"/> -- <c:out value="${e.getJob_title() }"/></option>
+                               </c:forEach> 
+								</sv:select>
                                <input type="submit" value="Add Project" class="btn btn-warning">
-                              </form>
+                              </sv:form>
                                
-                               display form to add new project<BR>
-                               Ask for client details of the project <BR>
-                               Ask for estimated completion duration and quotation budget of the project<BR>
-                               display option to assign manager to the project <BR>
-                               display option to assign employees to the project <BR>
+                              
                                
                                    
                                 </p>
                             </div>
-                            <div class="tab-pane fade" id="status">
-                                <h4>View detail project status</h4>
-                                <p>
-                               <h2>All Active Projects</h2>
-                                show all projects list with detail reports<BR>
-                                employees, manager, client details, duration, budget, estimated salary on project etc   
+                            <div class="tab-pane fade" id="status1">
+                            <br>
+                                <div align="left"> <font size="5" color="blue">All Active Projects</font>  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">All Past/Completed Projects </a></div> 
+                               <c:forEach items="${proj_list }" var="p">
+                               <c:if test='${p.getStatus() == "open" }'>
+                               <h3><c:out value="${p.getName() }"/></h3>
+                               Start Date: <c:out value="${p.getStart_date() }"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||
+                               Est. End Date: <c:out value="${p.getEstimated_end_date() }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||
+                               Client Name: <c:out value="${p.getClient_name() }"/>
+                                <BR>
+                              <form method="post" action="${pageContext.request.contextPath }/showProjectReport">
+                               <input type="text" style="display:none" name="pid" value='<c:out value="${p.getId() }"/>' />
+                               <input type="submit" value="View Detail Report" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </form>
+                               
+                               </c:if>
                                 <hr>
-                                <a href="#">All Past/Completed Projects </a>
-                                </p>
-
+                               </c:forEach>
+                              
+                               
+                                
+                               
+                                
+                                
+                         
+								
                             </div>
                             <div class="tab-pane fade" id="broadcast">
                                 <h4>Broadcast message to entire project team</h4>
@@ -106,6 +135,25 @@
 
                             </div>
 	
+								<div class="tab-pane fade" id="change">
+                                <h4>Change Manager</h4>
+                                <form method="post" action="${pageContext.request.contextPath }/ChangeManager">
+                                <p>
+                                Select Project:
+                                <select name="pid" class="form-control">
+                                  <c:forEach var="p" items="${proj_list }">
+                               <option value='<c:out value="${p.getId() }"/>'><c:out value="${p.getName() }"/> -- <c:out value="${p.getClient_name() }"/></option>
+                               </c:forEach></select><BR>  
+                                  Select Manager:
+                                 <select name="eid" class="form-control">
+                                  <c:forEach var="e" items="${emp_list }">
+                               <option value='<c:out value="${e.getId() }"/>'><c:out value="${e.getName() }"/> -- <c:out value="${e.getJob_title() }"/></option>
+                               </c:forEach></select>
+                                  
+                                   <BR><input type="submit" value="Change Manager" class="btn btn-primary">
+								</p></form>
+
+                            </div>
                        
                     </div>
                     </div>
