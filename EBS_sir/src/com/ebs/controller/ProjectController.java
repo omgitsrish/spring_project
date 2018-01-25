@@ -69,4 +69,8 @@ public class ProjectController {
 		model.addAttribute("msg", "Project Records Updated ");
 		return "redirect:/project";
 	}
+	
+	
+	
+	
 }
