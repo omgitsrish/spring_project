@@ -103,33 +103,26 @@
                                </c:if>
                                 <hr>
                                </c:forEach>
-                              
-                               
-                                
-                               
-                                
-                                
                          
-								
                             </div>
+                         
+                         
+                         
                             <div class="tab-pane fade" id="broadcast">
                                 <h4>Broadcast message to entire project team</h4>
                                <p>
-                               <sv:form method="post" action="${pageContext.request.contextPath }/SendMessage" modelAttribute="msg">
-                                   <sv:select path="project" class="form-control">
-                            
-                               <!-- Iterate list and pass all projects -->
-                            	  <c:forEach var="p" items="${proj_list }">
-                            	  <sv:option value='<c:out value="${p.proj_name }" />'></sv:option> 
-                               </c:forEach>
                                
-                               </sv:select><BR>  
+                                   <select name="project" class="form-control">
+                               <c:forEach var="p" items="${proj_list }">
+                               <option><c:out value="${p.getName() }"/></option>
+                               </c:forEach>  
+                               </select><BR>
                                
-                                  Message: <sv:textarea path="message" class="form-control"/> 
+                                  Message: <textarea name="message" class="form-control"> </textarea>
                                    <BR><input type="submit" value="Broadcast Message" class="btn btn-primary">
-                               </sv:form>
+								
 								</p>
-							
+
                             </div>
                              <div class="tab-pane fade" id="closure">
                                 <h4>Project closure</h4>
@@ -139,6 +132,7 @@
                                </select><BR>  
                                   Comments: <textarea name="comments" class="form-control"> </textarea>
                                    <BR><input type="submit" value="Add Project to Archives" class="btn btn-primary">
+								
 								</p>
 
                             </div>

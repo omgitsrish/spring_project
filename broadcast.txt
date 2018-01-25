@@ -1,0 +1,19 @@
+<div class="tab-pane fade" id="broadcast">
+                                <h4>Broadcast message to entire project team</h4>
+                               <p>
+                               <sv:form method="post" action="${pageContext.request.contextPath }/SendMessage" modelAttribute="msg">
+                                   <select path="project" class="form-control">
+                            
+                               <!-- Iterate list and pass all projects -->
+                            	  <c:forEach var="p" items="${proj_list }">
+                            	  <option value='<c:out value="${p.proj_name }" />'></option> 
+                               </c:forEach>
+                               
+                               </select><BR>  
+                               
+                                  Message: <sv:textarea path="message" class="form-control"/> 
+                                   <BR><input type="submit" value="Broadcast Message" class="btn btn-primary">
+                               </sv:form>
+								</p>
+							
+                            </div>
