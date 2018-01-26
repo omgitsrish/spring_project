@@ -9,27 +9,27 @@ import com.ebs.model.Account;
 
 @Component
 public class EHP {
-	private String eid;
-	private String pid;
+	private int eid;
+	private int pid;
 	private String date_from;
 	private String date_to;
 	private String role;
 
 	private Account account;
 	
-	public String getEid() {
+	public int getEid() {
 		return eid;
 	}
 
-	public void setEid(String eid) {
+	public void setEid(int eid) {
 		this.eid = eid;
 	}
 
-	public String getPid() {
+	public int getPid() {
 		return pid;
 	}
 
-	public void setPid(String pid) {
+	public void setPid(int pid) {
 		this.pid = pid;
 	}
 
@@ -65,6 +65,12 @@ public class EHP {
 		// go to DB and fetch
 		ArrayList<EHP> list = (ArrayList<EHP>)account.fetch(pid2);
 		return list;
+	}
+
+	@Override
+	public String toString() {
+		return "EHP [eid=" + eid + ", pid=" + pid + ", date_from=" + date_from + ", date_to=" + date_to + ", role="
+				+ role + "]";
 	}
 
 }

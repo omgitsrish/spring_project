@@ -42,6 +42,7 @@ public class ProjectController {
 		//go to DB via Employee bean and get all employees 
 		ArrayList<Employee> emp_list = employee.getAllEmployees();
 		ArrayList<Project> proj_list = project.getAllProjects();
+		
 		request.getSession().setAttribute("emp_list", emp_list);
 		request.getSession().setAttribute("proj_list", proj_list);
 
@@ -70,7 +71,37 @@ public class ProjectController {
 		return "redirect:/project";
 	}
 	
-	
-	
+	@SuppressWarnings("null")
+	@RequestMapping(value="/SendMessage",method=RequestMethod.POST)
+	public String sendMessage(HttpServletRequest request, Model model  ) {
+		ArrayList<Employee> elist = null;
+		ArrayList<Employee> ex=employee.getAllEmployees();
+		String message=request.getParameter("message");
+		model.addAttribute("message", message);
+		
+		String project_id=request.getParameter("project");
+		model.addAttribute("name", (String)project_id);
+		System.out.println(project_id);
+		ArrayList<EHP> e=ehp.fetch(project_id);
+		
+		System.out.println(e.toString());
+		
+		for(EHP e1:e) {
+			for(Employee e2:ex) {
+				System.out.println(e1.getEid()+"---"+e2.getId());
+				if(e1.getEid()==e2.getId()) {
+					System.out.println("Its a match, adding"+e2.getId());
+					elist.add(e2);
+				}
+			}
+		}
+		System.out.println("Comes till here");
+			for(Employee e3:elist) {
+				System.out.println("Id:"+e3.getId());
+			}
+		//	model.addAttribute("ehp",elist);
+		request.getSession().setAttribute("ehp", elist);
+		return "message_sent";
+	}
 	
 }

@@ -175,8 +175,8 @@ public class Account {
 			@Override
 			public EHP mapRow(ResultSet rs, int rowNum) throws SQLException {
 				EHP p =new EHP();
-				p.setEid(Integer.toString(rs.getInt("emp_id")));
-				p.setPid(Integer.toString(rs.getInt("proj_id")));
+				p.setEid(rs.getInt("emp_id"));
+				p.setPid(rs.getInt("proj_id"));
 				p.setDate_from(rs.getString("date_from"));
 				p.setDate_to(rs.getString("date_to"));
 				p.setRole(rs.getString("role"));

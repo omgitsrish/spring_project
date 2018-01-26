@@ -111,16 +111,18 @@
                             <div class="tab-pane fade" id="broadcast">
                                 <h4>Broadcast message to entire project team</h4>
                                <p>
+                               <form method="post" action="${pageContext.request.contextPath }/SendMessage">
                                
-                                   <select name="project" class="form-control">
+                                   <select name="project" class="form-control"> 
                                <c:forEach var="p" items="${proj_list }">
-                               <option><c:out value="${p.getName() }"/></option>
+                               <option value="<c:out value="${p.getId() }"/>"><c:out value="${p.getName() }"/></option>
                                </c:forEach>  
+                               
                                </select><BR>
                                
-                                  Message: <textarea name="message" class="form-control"> </textarea>
+                                  Message: <textarea name="message" class="form-control" ></textarea> 
                                    <BR><input type="submit" value="Broadcast Message" class="btn btn-primary">
-								
+								</form>
 								</p>
 
                             </div>
