@@ -14,8 +14,9 @@
 <c:out value="${name }"></c:out>
 <br>
 <br>
+<h2>Employee Details</h2>
 <c:forEach var="e" items="${ehp }" >
-<c:out value="${e.getId() }"/> 
+<c:out value="${e.getId() }---${e.getName()}---${e.getEmail() }"/> <br>
  </c:forEach>
 </body>
 </html>

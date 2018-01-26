@@ -74,7 +74,7 @@ public class ProjectController {
 	@SuppressWarnings("null")
 	@RequestMapping(value="/SendMessage",method=RequestMethod.POST)
 	public String sendMessage(HttpServletRequest request, Model model  ) {
-		ArrayList<Employee> elist = null;
+		ArrayList<Employee> elist = new ArrayList<>();
 		ArrayList<Employee> ex=employee.getAllEmployees();
 		String message=request.getParameter("message");
 		model.addAttribute("message", message);
@@ -90,8 +90,9 @@ public class ProjectController {
 			for(Employee e2:ex) {
 				System.out.println(e1.getEid()+"---"+e2.getId());
 				if(e1.getEid()==e2.getId()) {
-					System.out.println("Its a match, adding"+e2.getId());
+					System.out.println("Its a match, adding"+e2.getId()+"---"+e2);
 					elist.add(e2);
+					System.out.println("Yep");
 				}
 			}
 		}
@@ -99,8 +100,8 @@ public class ProjectController {
 			for(Employee e3:elist) {
 				System.out.println("Id:"+e3.getId());
 			}
-		//	model.addAttribute("ehp",elist);
-		request.getSession().setAttribute("ehp", elist);
+			model.addAttribute("ehp",elist);
+		//request.getSession().setAttribute("ehp", elist);
 		return "message_sent";
 	}
 	
